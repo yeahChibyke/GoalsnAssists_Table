@@ -13,54 +13,69 @@ GoalsnAssists_Table contains:
 
 https://book.getfoundry.sh/
 
-## Usage
+## Functions
 
-### Build
+### addPlayer()
 
-```shell
-$ forge build
+```    
+    function addPlayer(string memory _name, string memory _club, string memory _position, uint256    _goals, uint256 _assists, uint256 _matches) 
+            public {
+                listOfPlayers.push(Player(_name, _club, _position, _goals, _assists, _matches));
+                nameToGoals[_name] = _goals;
+                nameToAssists[_name] = _assists;
+            }
 ```
 
-### Test
+### totalNumberOfPlayers()
 
-```shell
-$ forge test
+```
+    function totalNumberOfPlayers() public view returns(uint256) {
+        uint256 numberOfPlayers = listOfPlayers.length;
+        return numberOfPlayers;
+    }
 ```
 
-### Format
+### removePlayer()
 
-```shell
-$ forge fmt
+```
+    function removePlayer(string memory _name) public {
+        require(listOfPlayers.length > 0, "There are no players in the list");
+        uint256 playerIndex = 0;
+        while(playerIndex < listOfPlayers.length && keccak256(abi.encodePacked(listOfPlayers[playerIndex].name)) != keccak256(abi.encodePacked(_name))) {
+            playerIndex++;
+        }
+        require(playerIndex < listOfPlayers.length, "Player not found");
+        listOfPlayers[playerIndex] = listOfPlayers[listOfPlayers.length - 1];
+        listOfPlayers.pop();
+        delete nameToGoals[_name];
+        delete nameToAssists[_name];
+    }
 ```
 
-### Gas Snapshots
+### getTopScorer()
 
-```shell
-$ forge snapshot
+```
+    function getTopScorer() public view returns(string memory topScorer, uint256 topScore) {
+        for(uint256 i = 0; i < listOfPlayers.length; i++) {
+            if(listOfPlayers[i].goals > topScore) {
+                topScorer = listOfPlayers[i].name;
+                topScore = listOfPlayers[i].goals;
+            }
+        }
+        return (topScorer, topScore);
+    }
 ```
 
-### Anvil
+### getTopAssister()
 
-```shell
-$ anvil
 ```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+    function getTopAssister() public view returns(string memory topAssister, uint256 topAssist) {
+        for(uint256 i = 0; i < listOfPlayers.length; i++) {
+            if(listOfPlayers[i].assists > topAssist) {
+                topAssister = listOfPlayers[i].name;
+                topAssist = listOfPlayers[i].assists;
+            }
+        }
+        return (topAssister, topAssist);
+    }
 ```
