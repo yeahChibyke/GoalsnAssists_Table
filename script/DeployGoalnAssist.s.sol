@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >= 0.6.0 < 0.9.0;
 
-import {Script} from "forge-std/Script.sol";
+import {Script} from "../lib/forge-std/src/Script.sol";
 import {GoalnAssist} from "../src/GoalnAssist.sol";
 
 contract DeployGoalnAssist is Script {

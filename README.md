@@ -1,13 +1,13 @@
 ## Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**GoalsnAssists_Table is a smart contract that enables users to store names of footballers, the number of goals they have scored, the number of assists they have made, etc.**
 
-Foundry consists of:
+GoalsnAssists_Table contains:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+-   **Player**: Struct that contains elements for details input.
+-   **listOfPlayers**: Public array that will contain list of players and their details.
+-   **nameToGoals**: Public mapping of name of player to goals scored.
+-   **nameToAssists**: Public mapping of name of player to assists made
 
 ## Documentation
 
