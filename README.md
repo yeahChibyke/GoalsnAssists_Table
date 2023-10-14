@@ -9,10 +9,6 @@ GoalsnAssists_Table contains:
 -   **nameToGoals**: Public mapping of name of player to goals scored.
 -   **nameToAssists**: Public mapping of name of player to assists made
 
-## Documentation
-
-https://book.getfoundry.sh/
-
 ## Functions
 
 ### addPlayer()
