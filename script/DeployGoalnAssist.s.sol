@@ -5,9 +5,9 @@ import {Script} from "../lib/forge-std/src/Script.sol";
 import {GoalnAssist} from "../src/GoalnAssist.sol";
 
 contract DeployGoalnAssist is Script {
-    function run() external returns(GoalnAssist) {
+    function run() external returns (GoalnAssist) {
         vm.startBroadcast();
-            GoalnAssist goalnAssist = new GoalnAssist();
+        GoalnAssist goalnAssist = new GoalnAssist();
         vm.stopBroadcast();
         return goalnAssist;
     }
